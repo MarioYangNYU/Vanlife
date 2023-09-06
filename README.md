@@ -19,7 +19,7 @@ The project allows users to select and place items on a grid interactively. Item
 - **SO_Item**: The "config file" for each item.
 - **SC_ItemBrowser**: Handles the browsing and selection of items using scroll view and grid group.
 
-- ## SO_Item Configuration Guide
+## SO_Item Configuration Guide
 ### Creating a new SO_Item
 
 1. **In Unity Editor:**  
@@ -29,3 +29,5 @@ The project allows users to select and place items on a grid interactively. Item
    - **Sprite**: Assign a sprite that visually represents the item.
    - **OccupiedSlots**: Define the grid slots that this item will occupy. This should be a list of 2D coordinates (Vector2Int) which represents the relative positions this item occupies on the grid. The origin is bottom left corner.
 
+## Development Guide
+- **SO Sprite:** The sprite for each "cell" is 500 * 500 pixels. Therefore, if your table's size is 2 * 1, please make the image size 1000 * 500. Make sure the sprite's **pixels per unit** is 500. If the sprite and the SO are set up correctly, it should be displayer properly automatically.
