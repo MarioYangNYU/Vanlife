@@ -386,7 +386,7 @@ MonoBehaviour:
   width: 10
   height: 10
   gridCellPrefab: {fileID: 6411322194252466977, guid: a0b92f94b27000147aca08508b3556a2, type: 3}
-  itemToPlace: {fileID: 11400000, guid: 044ae24d73efb5f40a3c6d50d988eeee, type: 2}
+  itemToPlace: {fileID: 11400000, guid: 724c83e95a5c95e43abff4b3b3679538, type: 2}
   itemTemplate: {fileID: 5778773448185018449, guid: 4d87890bde3f3174e886522131419f73, type: 3}
   itemPosition: {x: 0, y: 0}
   currentRotation: 0
@@ -1212,30 +1212,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 795058762}
-        m_TargetAssemblyTypeName: SC_GridSystem, Assembly-CSharp
-        m_MethodName: NextRotation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1371323186}
-        m_TargetAssemblyTypeName: SC_ItemBrowser, Assembly-CSharp
-        m_MethodName: RotateButtonsBy90Degrees
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1582473188}
         m_TargetAssemblyTypeName: SC_RotateButton, Assembly-CSharp
         m_MethodName: Rotate
