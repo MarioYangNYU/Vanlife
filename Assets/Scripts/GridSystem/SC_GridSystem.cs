@@ -58,10 +58,8 @@ public class SC_GridSystem : MonoBehaviour
 
             for (int x = 0; x < width; x++)
             {
-                GameObject cell = Instantiate(gridCellPrefab,
-                                              new Vector3(x - xOffset, y - yOffset, 0),
-                                              Quaternion.identity,
-                                              rowObject.transform);
+                GameObject cell = Instantiate(gridCellPrefab, new Vector3(x - xOffset, y - yOffset, 0),
+                                              Quaternion.identity, rowObject.transform);
                 grid[GetIndex(x, y)] = cell.GetComponent<SC_GridCell>();
                 grid[GetIndex(x, y)].SetPosition(x, y);
                 cell.name = $"GridCell({x}, {y})";
