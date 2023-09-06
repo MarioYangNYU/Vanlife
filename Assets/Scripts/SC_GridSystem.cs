@@ -8,6 +8,7 @@ public class SC_GridSystem : MonoBehaviour
     private SC_GridCell[] grid;
     private Transform itemParent;
     private SC_GridCell currentlySelectedCell;
+    public GameObject PreviewedItemInstance { get; private set; }
 
     [Header("Debug Use")]
     public SO_Item itemToPlace;
@@ -38,10 +39,7 @@ public class SC_GridSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlaceItem(itemToPlace, itemPosition.x, itemPosition.y, currentRotation);
-        }
+
     }
 
     #region Grids
@@ -83,7 +81,6 @@ public class SC_GridSystem : MonoBehaviour
     }
     #endregion
 
-    // Items TODO: preview item placement before actually placing
     #region Items
     public bool CanPlaceItem(SO_Item item, int startX, int startY, ItemRotation rotation = ItemRotation.None)
     {
@@ -101,8 +98,10 @@ public class SC_GridSystem : MonoBehaviour
         return true;
     }
 
-    public void PlaceItem(SO_Item itemSO, int startX, int startY, ItemRotation rotation = ItemRotation.None)
+    public void PlaceItem(int startX, int startY)
     {
+        SO_Item itemSO = itemToPlace;
+        ItemRotation rotation = currentRotation;
         if (!CanPlaceItem(itemSO, startX, startY, rotation))
         {
             Debug.LogWarning("Cannot place the item here.");
@@ -130,6 +129,34 @@ public class SC_GridSystem : MonoBehaviour
             grid[GetIndex(x, y)].IsOccupied = true;
         }
     }
+
+    public void PreviewItem(int startX, int startY)
+    {
+        if (PreviewedItemInstance)
+        {
+            Destroy(PreviewedItemInstance);
+        }
+
+        if (!CanPlaceItem(itemToPlace, startX, startY, currentRotation))
+        {
+            return;  
+        }
+
+        float xOffset = width / 2f - 0.5f;
+        float yOffset = height / 2f - 0.5f;
+
+        Vector3 itemWorldPosition = new Vector3(startX - xOffset, startY - yOffset, 0);
+        PreviewedItemInstance = Instantiate(itemTemplate, itemWorldPosition, Quaternion.identity);
+        PreviewedItemInstance.transform.SetParent(itemParent);
+    
+        SC_Item itemScript = PreviewedItemInstance.GetComponent<SC_Item>();
+        if (itemScript != null)
+        {
+            itemScript.gridItemData = itemToPlace;
+            itemScript.SetItem(itemToPlace, currentRotation);
+        }
+    }
+
 
     public void SetCurrentItem(SO_Item selectedItem)
     {

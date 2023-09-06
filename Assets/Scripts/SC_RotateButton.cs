@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,14 @@ public class SC_RotateButton : MonoBehaviour
         SetText(currentRotation);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Rotate();
+        }
+    }
+
     private void SetText(ItemRotation rotation)
     {
         text.text = rotationText[rotation];
@@ -30,6 +39,8 @@ public class SC_RotateButton : MonoBehaviour
     {
         currentRotation = (ItemRotation)(((int)currentRotation + 1) % 4);
         SetText(currentRotation);
+        SC_GridSystem.Singleton.NextRotation();
+        SC_ItemBrowser.Singleton.RotateButtonsBy90Degrees();
     }
 
 }

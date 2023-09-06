@@ -10,6 +10,22 @@ public class SC_ItemBrowser : MonoBehaviour
     private SC_GridSystem gridSystem;
     private SO_Item items;
 
+    #region Singleton
+    public static SC_ItemBrowser Singleton { get; private set; }
+
+    private void Awake()
+    {
+        if (Singleton == null)
+        {
+            Singleton = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+    #endregion
+    
     private void Start()
     {
         gridSystem = SC_GridSystem.Singleton;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,7 +47,24 @@ public class SC_GridCell : MonoBehaviour
 
     private void OnMouseDown()
     {
+        SC_GridSystem.Singleton.PlaceItem(x,y);
+    }
+
+    private void OnMouseOver()
+    {
         SC_GridSystem.Singleton.SetCurrentGrid(this);
+        SC_GridSystem.Singleton.PreviewItem(x, y);
+        spriteRenderer.sortingOrder = 10;
+    }
+
+    private void OnMouseExit()
+    {
+        if (SC_GridSystem.Singleton.PreviewedItemInstance)
+        {
+            Destroy(SC_GridSystem.Singleton.PreviewedItemInstance);
+        }
+
+        spriteRenderer.sortingOrder = 0;
     }
 
 }
